@@ -1,525 +1,611 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(102141357, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/102141357" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThisClient - Лучший читерский клиент для Minecraft</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>Beton-pol - Производство и монтаж бетонных полов</title>
     <style>
-        :root {
-            --primary: #ff00aa;
-            --primary-glow: rgba(255, 0, 170, 0.7);
-            --secondary: #ff66cc;
-            --dark: #0a0a12;
-            --darker: #050508;
-            --text: #f0f0f0;
-            --text-secondary: #cccccc;
-        }
-        
+        /* Общие стили */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
         
         body {
-            background-color: var(--dark);
-            color: var(--text);
-            font-family: 'Rajdhani', sans-serif;
-            line-height: 1.7;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 0, 170, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(255, 102, 204, 0.1) 0%, transparent 20%);
+            color: #333;
+            line-height: 1.6;
         }
         
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(rgba(5, 5, 8, 0.9), rgba(5, 5, 8, 0.7)), 
-                        url('https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, var(--darker) 70%);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-        }
-        
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px var(--primary-glow);
-            letter-spacing: 3px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: var(--secondary);
-            text-shadow: 0 0 10px var(--primary-glow);
+        ul {
+            list-style: none;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
-        /* Header */
+        /* Шапка */
         header {
-            background: linear-gradient(to bottom, var(--darker), rgba(5, 5, 8, 0.8));
-            padding: 30px 0;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid var(--primary);
-            box-shadow: 0 0 30px var(--primary-glow);
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-        
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            margin: 0;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px var(--primary-glow);
-            letter-spacing: 2px;
-        }
-        
-        .tagline {
-            color: var(--secondary);
-            font-size: 1.3rem;
-            margin-top: 10px;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: rgba(5, 5, 8, 0.9);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(255, 0, 170, 0.3);
-        }
-        
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            margin: 0 20px;
-            padding: 5px 0;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover {
-            color: var(--secondary);
-        }
-        
-        nav a:hover::after {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
             width: 100%;
+            z-index: 1000;
         }
         
-        /* Main Content */
-        .main-content {
+        .header-top {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        .contacts {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Навигация */
+        nav {
+            background-color: #2c3e50;
+        }
+        
+        .nav-list {
+            display: flex;
             justify-content: center;
-            margin: 50px 0;
-            gap: 25px;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: #fff;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-link:hover {
+            background-color: #e74c3c;
+        }
+        
+        /* Главный баннер */
+        .main-banner {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://remstroyy.ru/upload/resize_cache/iblock/fcc/735_10000_0/fcc5087b02833835b34376958a6673d3.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 180px 0 380px;
+        }
+        
+        .banner-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .banner-text {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* О компании */
+        .about {
+            padding: 80px 0;
         }
         
         .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
             text-align: center;
-            margin: 50px 0 30px;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary-glow);
-            letter-spacing: 2px;
-            position: relative;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #2c3e50;
         }
         
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            margin: 15px auto;
-            border-radius: 3px;
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
         }
         
-        /* Feature Cards */
-        .feature-card {
-            background: rgba(10, 10, 18, 0.7);
-            border: 1px solid rgba(255, 0, 170, 0.3);
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
             border-radius: 8px;
-            padding: 25px;
-            width: 100%;
-            max-width: 350px;
-            transition: all 0.4s ease;
-            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Услуги */
+        .services {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
         }
         
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
-            z-index: -1;
-            border-radius: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .feature-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px var(--primary-glow);
-            border-color: transparent;
         }
         
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-        
-        .feature-card h3 {
-            color: var(--primary);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 102, 204, 0.3);
-            padding-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-        
-        /* Download Button */
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            padding: 18px 40px;
-            margin: 50px auto;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
+        .service-image {
+            height: 200px;
             overflow: hidden;
-            box-shadow: 0 5px 15px var(--primary-glow);
-            text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
         }
         
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px var(--primary-glow);
-            letter-spacing: 2px;
-        }
-        
-        .download-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .service-image img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
         
-        .download-btn:hover::after {
-            left: 100%;
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
         }
         
-        /* About Section */
-        .about-section {
-            background: rgba(5, 5, 8, 0.7);
-            border-radius: 10px;
-            padding: 40px;
-            margin: 60px 0;
-            border: 1px solid rgba(255, 0, 170, 0.2);
-            position: relative;
-            overflow: hidden;
+        .service-content {
+            padding: 20px;
         }
         
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
         }
         
-        /* FAQ Section */
-        .faq-item {
-            margin-bottom: 25px;
-            border-bottom: 1px dashed rgba(255, 102, 204, 0.3);
-            padding-bottom: 20px;
+        /* Преимущества */
+        .advantages {
+            padding: 80px 0;
         }
         
-        .faq-item:last-child {
-            border-bottom: none;
+        .advantages-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
         }
         
-        .faq-item strong {
-            color: var(--secondary);
-            font-size: 1.1rem;
-            display: block;
+        .advantage-item {
+            padding: 30px 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .advantage-item:hover {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        .advantage-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+        
+        .advantage-item:hover .advantage-icon {
+            color: #fff;
+        }
+        
+        /* Контакты */
+        .contact-section {
+            padding: 80px 0;
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        textarea.form-control {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a252f;
+            color: #fff;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        
+        .footer-links li {
             margin-bottom: 10px;
         }
         
-        /* Footer */
-        footer {
-            background: linear-gradient(to top, var(--darker), rgba(5, 5, 8, 0.8));
-            padding: 40px 0;
+        .footer-links a:hover {
+            color: #e74c3c;
+        }
+        
+        .copyright {
             text-align: center;
-            margin-top: 80px;
-            border-top: 1px solid var(--primary);
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-        
-        footer p {
-            margin: 10px 0;
-            color: var(--text-secondary);
-        }
-        
-        /* Animations */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 10px var(--primary-glow); }
-            50% { box-shadow: 0 0 20px var(--primary-glow); }
-            100% { box-shadow: 0 0 10px var(--primary-glow); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .tagline {
-                font-size: 1.1rem;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                padding: 10px 0;
-            }
-            
-            nav a {
-                margin: 5px 10px;
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .feature-card {
-                max-width: 100%;
-            }
-            
-            .download-btn {
-                padding: 15px 30px;
-                font-size: 1.1rem;
-            }
+            padding-top: 20px;
+            border-top: 1px solid #2c3e50;
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>ThisClient для Minecraft (DLC)</h1>
-            <p>Играйте с нашим клиентом и наслаждайтесь гневом убитых вами игроков</p>
-            <a href="https://disk.yandex.ru/d/eZ4F1E8I2hrFDw" class="download-btn pulse">СКАЧАТЬ THISCLIENT</a>
-        </div>
-    </section>
-    
-    <!-- Header -->
+    <!-- Шапка -->
     <header>
         <div class="container">
-            <h1>ThisClient</h1>
-            <p class="tagline">САМЫЙ МОЩНЫЙ ЧИТ-КЛИЕНТ ДЛЯ MINECRAFT</p>
+            <div class="header-top">
+                <div class="logo">Beton-<span>pol</span></div>
+                <div class="contacts">
+                    <div class="contact-item">
+                        <i class="icon">📞</i>
+                        <span>+375 (29) 1111-404</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="icon">✉️</i>
+                        <span>beton-poll@mail.ru</span>
+                    </div>
+                </div>
+            </div>
         </div>
+        <nav>
+            <ul class="nav-list container">
+                <li class="nav-item"><a href="#" class="nav-link">Главная</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">О компании</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Услуги</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Проекты</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Контакты</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <nav>
-        <a href="#features">Функции</a>
-        <a href="#download">Скачать</a>
-        <a href="#about">О нас</a>
-        <a href="#faq">FAQ</a>
-    </nav>
-    
-    <div class="container">
-        <h2 class="section-title" id="features">Функции</h2>
-        <div class="main-content">
-            <div class="feature-card">
-                <h3>KillAura</h3>
-                <p>Автоматически сама бьет игрока. Работает на любых серверах.</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>ESP
-                <p>Полная информация об игроках через стены: здоровье, дистанция, ники и снаряжение.</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Flight (FLY)</h3>
-                <p>5 режимов полёта с кастомными анимациями и защитой от обнаружения античитами.</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Speed (для подписки BETA)</h3>
-                <p>Ускорение передвижения с 4 уровнями и автоматической подстройкой под сервер.</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>AntiBot</h3>
-                <p>Система обхода всех популярных античитов (GrimAC, Matrix, Vulcan и других).</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Elytra Fly</h3>
-                <p>Позваляет летать на нагруднике с огромной скоросьтю без траты прочности элитр (работает если в хотбаре лежат элитры)</p>
+
+    <!-- Главный баннер -->
+    <section class="main-banner">
+        <div class="container">
+            <h1 class="banner-title">Профессиональные бетонные полы от Beton-pol</h1>
+            <p class="banner-text">Мы предлагаем полный комплекс услуг по устройству бетонных полов промышленного и коммерческого назначения с гарантией качества</p>
+            <a href="#" class="btn">Заказать консультацию</a>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">О компании Beton-pol</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Компания Beton-pol - это команда профессионалов с многолетним опытом работы в сфере устройства бетонных полов. Мы работаем на рынке Беларуси с 2010 года и за это время реализовали более 500 успешных проектов.</p>
+                    <p>Наша специализация - промышленные бетонные полы для складов, производственных помещений, торговых центров и других объектов коммерческого назначения.</p>
+                    <p>Мы используем только качественные материалы и современное оборудование, что позволяет нам гарантировать долговечность и надежность ваших полов.</p>
+                </div>
+                <div class="about-image">
+                </div>
             </div>
         </div>
-        
-        <div style="text-align: center;">
-            <a href="https://disk.yandex.ru/d/eZ4F1E8I2hrFDw" class="download-btn pulse" id="download">СКАЧАТЬ THISCLIENT</a>
+    </section>
+
+    <!-- Услуги -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.prom.md/11573109_w640_h640_betonnye-promyshlennye-poly.jpg" alt="Устройство бетонных полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Устройство бетонных полов</h3>
+                        <p>Полный цикл работ по устройству бетонных полов промышленного назначения с соблюдением всех технологических требований, начиная с подготовки оснавания до полировки готового пола.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://www.polimer-s-group.ru/assets/images/resources/5/4.jpg" alt="Устройство топпинг-полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Устройство топпинг-полов</h3>
+                        <p>Упрочнение поверхности бетонного пола сухими упрочняющими смесями (топпингами) для повышения износостойкости.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://www.npkreagent.ru/wp-content/uploads/2019/07/tehnologiya-ustroystva-polimernyh-nalivnyh-polov.jpg" alt="Полимерные покрытия">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Полимерные покрытия</h3>
+                        <p>Нанесение полимерных покрытий на бетонные полы для придания дополнительных свойств: химической стойкости, беспыльности и др.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://tehfloor.ru/wp-content/uploads/2018/01/2018-01-26_13-04-45.png" alt="Шлифовка бетонных полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Шлифовка бетонных полов</h3>
+                        <p>Шлифовка и полировка бетонных полов для выравнивания поверхности, устранения дефектов и придания эстетичного вида.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://www.rsholod.ru/images/shlifovka-betonnogo-pola-rsholod-6-s.jpg" alt="Ремонт бетонных полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Ремонт бетонных полов</h3>
+                        <p>Комплекс работ по ремонту и восстановлению поврежденных бетонных полов с использованием современных материалов.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://i.ytimg.com/vi/3JuyRovdz1o/maxresdefault.jpg" alt="Устройство деформационных швов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Устройство деформационных швов</h3>
+                        <p>Профессиональное устройство и герметизация деформационных швов в бетонных полах для предотвращения трещинообразования.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="about-section" id="about">
-            <h2 class="section-title">О ThisClient</h2>
-            <p style="margin-bottom: 20px; font-size: 1.1rem;">ThisClient - это премиум читерский клиент для Minecraft, разработанный профессиональной командой с более чем 5-летним опытом в области игровых модификаций.</p>
-            
-            <p style="margin-bottom: 20px; font-size: 1.1rem;">Наш клиент использует передовые технологии маскировки и оптимизации, что делает его практически необнаружимым для систем защиты, сохраняя при этом максимальную производительность.</p>
-            
-            <p style="font-size: 1.1rem;">Каждую неделю мы выпускаем обновления, адаптируя клиент под новые версии игры и античиты, чтобы обеспечить вам стабильное преимущество в игре.</p>
+    </section>
+
+    <!-- Проэээкты            -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Проекты</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://remstroyy.ru/upload/resize_cache/iblock/c03/735_10000_0/3tmehfpj67xwfiz4kpm39zr93daa1fhy.jpg" alt="Устройство бетонных полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Полы для склада</h3>
+                        <p>Коэффициенты линейного расширения высокопрочных наливных полов и бетонного основания практически идентичны, что снижает напряжение в зоне их соприкосновения и исключает образование трещин и отслоек покрытия.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://remstroyy.ru/upload/resize_cache/iblock/73a/735_10000_0/73aedc152dfceda7d42483e466647711.jpg" alt="Устройство топпинг-полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Полы для производственных помещений</h3>
+                        <p>Способность при толщине слоя 6 мм выдерживать постоянные нагрузки в 80 Па, возможность эксплуатации при температурах от - 25°С до +80°С, низкая воспламеняемость (при температуре 472°С), горючесть и задымленность.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://remstroyy.ru/upload/resize_cache/iblock/456/735_10000_0/4569262ce7c51c1288e235759bc00a8a.jpg" alt="Полимерные покрытия">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Полы для паркинга</h3>
+                        <p>Соответствуют правилам СП154.13130.2013 по пожаробезопасности покрытий, выдерживают колебания температур от -40 до + 60 градусов и обладают противоскользящими свойствами R9 – R10.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://remstroyy.ru/upload/resize_cache/iblock/c74/735_10000_0/c74857e38d3279537607bc82fae36c60.jpg" alt="Шлифовка бетонных полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Пол для автосервиса</h3>
+                        <p>Срок службы полов до 40 лет, прочность на растяжение – 25%, возможность эксплуатации при температуре от –35°С до +65°С. Масла, ГСМ, горячая вода не разрушают структуру покрытия.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://remstroyy.ru/upload/resize_cache/iblock/e5b/735_10000_0/e5b0f9b92dc1694d0c4c5b6d7d74ad96.jpg" alt="Ремонт бетонных полов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Полы для пищевого производства</h3>
+                        <p>Полная механическая нагрузка от 2 часов до 3 суток, высокие термо-химстойкие свойства, в том числе, устойчивость к обработке паром, уровень пожарной безопасности Г1, В2, РП1.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://moscow-beton.ru/upload/iblock/c51/okrgdm1hu0mv1grbfq5avlcugd2ikzfl.jpg" alt="Устройство деформационных швов">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Полы для ангара</h3>
+                        <p>Ангары — это промышленные помещения, которые чаще всего используются для обслуживания и хранения габаритной техники или оборудуются под склады. </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <h2 class="section-title" id="faq">Частые вопросы</h2>
-        <div class="main-content" style="flex-direction: column; max-width: 800px; margin: 0 auto;">
-            <div class="faq-item">
-                <strong>Q: Как установить ThisClient?</strong>
-                <p>A: После скачивания просто запустите установщик и следуйте инструкциям. Клиент автоматически определит вашу версию Minecraft.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Безопасно ли использовать ThisClient?</strong>
-                <p>A: Да, наш клиент использует самые современные методы защиты и не содержит вирусов или майнеров.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Для каких версий Minecraft доступен клиент?</strong>
-                <p>A: ThisClient поддерживает все версии Minecraft от 1.8.9 до последней стабильной сборки.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Что делать, если клиент обнаружен античитом?</strong>
-                <p>A: Включите режим "Ghost Mode" в настройках или сообщите нам - мы выпустим патч в течение 24 часов.</p>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают Beton-pol</h2>
+            <div class="advantages-list">
+                <div class="advantage-item">
+                    <div class="advantage-icon">🏭</div>
+                    <h3>Опыт</h3>
+                    <p>Более 10 лет успешной работы на рынке</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">👷</div>
+                    <h3>Профессионализм</h3>
+                    <p>Квалифицированные специалисты с профильным образованием</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">🔧</div>
+                    <h3>Оборудование</h3>
+                    <p>Современное оборудование и инструменты</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">💰</div>
+                    <h3>Гарантия</h3>
+                    <p>Гарантия на все виды работ до 5 лет</p>
+                </div>
             </div>
         </div>
-    </div>
-    
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p><strong>Адрес:</strong> г. Минск, ул. П. Мстиславца, 10</p>
+                    <p><strong>Телефон:</strong> +375 (29) 1111-404</p>
+                    <p><strong>Email:</strong> beton-poll@mail.ru</p>
+                    <p><strong>Режим работы:</strong> Пн-Пт: 9:00-18:00</p>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Телефон" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Сообщение"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
     <footer>
         <div class="container">
-            <p>© 2025 ThisClient. Все права защищены.</p>
-            <p>Этот проект не аффилирован с Mojang Studios или Microsoft.</p>
-            <p style="margin-top: 20px; color: var(--secondary);">ThisClient Team - Redefining Minecraft Experience</p>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Beton-pol</h3>
+                    <p>Профессиональное устройство бетонных полов промышленного и коммерческого назначения в Минске и по всей Беларуси.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Услуги</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Бетонные полы</a></li>
+                        <li><a href="#">Топпинг-полы</a></li>
+                        <li><a href="#">Полимерные покрытия</a></li>
+                        <li><a href="#">Ремонт полов</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Адрес: г. Минск, ул. П. Мстиславца, 10</a></li>
+                        <li><a href="#">Телефон: +375 (29) 1111-404</a></li>
+                        <li><a href="#">Email: beton-poll@mail.ru</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Beton-pol. Все права защищены. UP: 18:45</p>
+            </div>
         </div>
     </footer>
 </body>
